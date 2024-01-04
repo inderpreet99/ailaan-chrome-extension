@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     saveButton.addEventListener("click", function () {
       const selectedPage = pageUrlInput.value.trim();
       chrome.storage.sync.set({ "selectedPage": selectedPage }, function () {
-        alert("Settings saved!");
+        document.getElementById("status").innerText = "Settings saved!";
         chrome.runtime.sendMessage({ reload: true });
       });
     });
