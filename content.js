@@ -11,7 +11,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         } else {
             // update in place
             ailaan.innerHTML = message.ailaan;
-            console.log(ailaan.innerHTML, "somethign", message.ailaan)
         }
     }
 });
