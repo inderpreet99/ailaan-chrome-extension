@@ -7,10 +7,20 @@
 </head>
 
 <body>
-  <label for="pageUrl">Page URL:</label>
-  <input type="text" id="pageUrl" placeholder="Enter page URL">
+  <label for="selectedPage">Page URL:</label>
+  <input type="text" id="selectedPage" placeholder="Page to show banner">
+
+  <label for="periodInMinutes">Period in minutes:</label>
+  <input type="text" id="periodInMinutes" placeholder="Period in minutes">
+
+  <label for="ailaanApi">API:</label>
+  <input type="text" id="ailaanApi" placeholder="URL to pull ailaan message from">
+
   <button id="saveButton">Save</button>
+
   <div id="status"></div>
+
+  <script src="./constants.js"></script>
 </body>
 
 </html>
