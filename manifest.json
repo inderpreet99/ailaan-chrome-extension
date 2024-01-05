@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Banner Extension",
+    "name": "Ailaan",
     "version": "1.0",
-    "description": "Adds a banner to a specified webpage",
+    "description": "Adds a ailaan message to a specified page",
     "permissions": [
         "storage",
         "alarms",
@@ -14,20 +14,24 @@
     "action": {
         "default_popup": "popup.html",
         "default_icon": {
-            "16": "images/icon16.jpeg",
-            "48": "images/icon48.jpeg",
-            "128": "images/icon128.jpeg"
+            "16": "images/announcement-bullhorn-16.png",
+            "32": "images/announcement-bullhorn-32.png",
+            "128": "images/announcement-bullhorn-128.png"
         }
     },
     "icons": {
-        "16": "images/icon16.jpeg",
-        "48": "images/icon48.jpeg",
-        "128": "images/icon128.jpeg"
+        "16": "images/announcement-bullhorn-16.png",
+        "32": "images/announcement-bullhorn-32.png",
+        "128": "images/announcement-bullhorn-128.png"
     },
     "content_scripts": [
-      {
-        "matches": ["https://*/*"],
-        "js": ["content.js"]
-      }
+        {
+            "matches": [
+                "https://*/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
     ]
 }
