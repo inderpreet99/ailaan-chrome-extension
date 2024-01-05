@@ -7,7 +7,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             const ailaanDiv = document.createElement("div");
             ailaanDiv.setAttribute("id", "ailaan")
             ailaanDiv.innerHTML = message.ailaan;
-            document.body.prepend(ailaanDiv);
+            document.body.appendChild(ailaanDiv);
         } else {
             // update in place
             ailaan.innerHTML = message.ailaan;
