@@ -34,28 +34,35 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
     const {selectedPage} = await getStorageOrConstant("selectedPage");
 
     if (selectedPage) {
-      await fetchAilaan(selectedPage);
+
+      // check if the tab exists
+      chrome.tabs.query({ url: selectedPage }, async (tabs) => {
+        if (!tabs) {
+          console.warn("Tab is not open!")
+          return
+        }
+
+        // fetch ailaan once
+        const data = await fetchAilaan();
+        if (data.message) {
+          tabs.forEach(async (tab) => {
+
+            // send the tab message
+            chrome.tabs.sendMessage(tab.id, { ailaan: data.message });
+          });
+        }
+      });
     }
   }
 });
 
-const fetchAilaan = async (selectedPage) => {
+const fetchAilaan = async () => {
   const { ailaanApi } = await getStorageOrConstant("ailaanApi");
-  fetch(ailaanApi, {cache: "no-cache"})
+  return fetch(ailaanApi, {cache: "no-cache"})
     .then(response => response.json())
     .then(data => {
       console.log("data", data)
-      if (data.message) {
-        chrome.tabs.query({ url: selectedPage }, (tabs) => {
-          if (!tabs) {
-            console.warn("Tab is not open!")
-            return
-          }
-          tabs.forEach(tab => {
-            chrome.tabs.sendMessage(tab.id, { ailaan: data.message });
-          });
-        });
-      }
+      return data;
     })
     .catch(error => console.error("Error fetching ailaan:", error));
 }
