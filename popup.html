@@ -16,6 +16,12 @@
   <label for="ailaanApi">API:</label>
   <input type="text" id="ailaanApi" placeholder="URL to pull ailaan message from">
 
+  <label for="targetClass">Target Class:</label>
+  <input type="text" id="targetClass" placeholder="Target class from which to pull. For 'input_here' class, example: document.getElementsByClassName('input_here')[0].appendChild(<div id='ailaan'>message</div>)">
+
+  <label for="targetCss">Target CSS:</label>
+  <input type="text" id="targetCss" placeholder="Target css. Example: '#ailaan { color: red }'">
+
   <button id="saveButton">Save</button>
 
   <div id="status"></div>

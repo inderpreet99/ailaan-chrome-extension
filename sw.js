@@ -32,6 +32,8 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
   console.log('fetching banner ' + alarm.name);
   if (alarm.name === alarmName) {
     const {selectedPage} = await getStorageOrConstant("selectedPage");
+    const {targetClass} = await getStorageOrConstant("targetClass");
+    const {targetCss} = await getStorageOrConstant("targetCss");
 
     if (selectedPage) {
 
@@ -48,7 +50,11 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
           tabs.forEach(async (tab) => {
 
             // send the tab message
-            chrome.tabs.sendMessage(tab.id, { ailaan: data.message });
+            chrome.tabs.sendMessage(tab.id, {
+              ailaan: data.message,
+              targetClass,
+              targetCss,
+            });
           });
         }
       });
