@@ -56,12 +56,13 @@ const setCss = (targetCss) => {
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    console.debug("message received" , message);
+    const ailaanDiv = getAilaanDiv();
     if (message.ailaan) {
-        console.debug("message received" , message);
-
-        const ailaanDiv = getAilaanDiv();
         setMessage(ailaanDiv, message.ailaan);
         createAilaan(ailaanDiv, message.targetClass)
         setCss(message.targetCss);
+    } else {
+        setMessage(ailaanDiv, "");
     }
 });

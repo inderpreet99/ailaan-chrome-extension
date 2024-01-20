@@ -45,18 +45,20 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
         }
 
         // fetch ailaan once
+        var ailaan = ""
         const data = await fetchAilaan();
         if (data && data.message) {
-          tabs.forEach(async (tab) => {
-
-            // send the tab message
-            chrome.tabs.sendMessage(tab.id, {
-              ailaan: data.message,
-              targetClass,
-              targetCss,
-            });
-          });
+          ailaan = data.message;
         }
+
+        tabs.forEach(async (tab) => {
+          // send the tab message
+          chrome.tabs.sendMessage(tab.id, {
+            ailaan,
+            targetClass,
+            targetCss,
+          });
+        });
       });
     }
   }
