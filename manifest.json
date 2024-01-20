@@ -4,9 +4,9 @@
     "version": "1.0",
     "description": "Adds a ailaan message to a specified page",
     "permissions": [
-        "storage",
-        "alarms",
-        "tabs"
+        "storage",   // for storing popup/action form inputs
+        "alarms",    // for periodically searching for updates
+        "tabs"      // for locating the right tabs
     ],
     "background": {
         "service_worker": "sw.js"

@@ -22,14 +22,14 @@ const checkAlarmState = async () => {
   const alarm = await chrome.alarms.get(alarmName);
 
   if (!alarm) {
-    console.log('creating alarm since it doesn\'t exist');
+    console.debug('creating alarm since it doesn\'t exist');
     await createAlarm(alarmName, periodInMinutes);
   }
 }
 checkAlarmState();
 
 chrome.alarms.onAlarm.addListener(async (alarm) => {
-  console.log('fetching banner ' + alarm.name);
+  console.debug('fetching banner ' + alarm.name);
   if (alarm.name === alarmName) {
     const {selectedPage} = await getStorageOrConstant("selectedPage");
     const {targetClass} = await getStorageOrConstant("targetClass");
@@ -67,7 +67,7 @@ const fetchAilaan = async () => {
   return fetch(ailaanApi, {cache: "no-cache"})
     .then(response => response.json())
     .then(data => {
-      console.log("data", data)
+      console.debug("data", data)
       return data;
     })
     .catch(error => console.warn("Error fetching ailaan:", error));
