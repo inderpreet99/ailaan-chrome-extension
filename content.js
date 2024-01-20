@@ -1,25 +1,38 @@
+const getAilaanDiv = () => {
+
+    // find ailaan
+    const ailaanDiv = document.getElementById("ailaan")
+    if (ailaanDiv) {
+        return ailaanDiv;
+    }
+
+    // ailaan not on page, let's add
+    const newDiv = document.createElement("div");
+    newDiv.setAttribute("id", "ailaan")
+    return newDiv;
+}
+
+const setClass = (ailaanDiv, className) => {
+    var targetElement = document.body;
+    if (message.targetClass) {
+        elements = document.getElementsByClassName(message.targetClass);
+        if (elements) {
+            targetElement = elements[0];
+        }
+    }
+    targetElement.appendChild(ailaanDiv);
+}
+
+const setMessage = (ailaanDiv, ailaan) => {
+    ailaanDiv.innerHTML = ailaan;
+}
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.ailaan) {
-        console.log("message received" , message)
-        const ailaan = document.getElementById("ailaan")
+        console.log("message received" , message);
 
-        if (!ailaan) {
-            // ailaan not on page, let's add
-            const ailaanDiv = document.createElement("div");
-            ailaanDiv.setAttribute("id", "ailaan")
-            ailaanDiv.innerHTML = message.ailaan;
-
-            var targetElement = document.body;
-            if (message.targetClass) {
-                elements = document.getElementsByClassName(message.targetClass);
-                if (elements) {
-                    targetElement = elements[0];
-                }
-            }
-            targetElement.appendChild(ailaanDiv);
-        } else {
-            // update in place
-            ailaan.innerHTML = message.ailaan;
-        }
+        const ailaanDiv = getAilaanDiv();
+        setMessage(ailaanDiv, message.ailaan);
+        setClass(ailaanDiv, message.targetClass)
     }
 });
