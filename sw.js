@@ -46,7 +46,7 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
 
         // fetch ailaan once
         const data = await fetchAilaan();
-        if (data.message) {
+        if (data && data.message) {
           tabs.forEach(async (tab) => {
 
             // send the tab message
@@ -70,5 +70,5 @@ const fetchAilaan = async () => {
       console.log("data", data)
       return data;
     })
-    .catch(error => console.error("Error fetching ailaan:", error));
+    .catch(error => console.warn("Error fetching ailaan:", error));
 }
